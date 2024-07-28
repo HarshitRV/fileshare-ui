@@ -1,21 +1,22 @@
 import Root from "./routes/Root/Root";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, Navigate, RouterProvider } from "react-router-dom";
 import UploadFile from "./components/UploadFile/UploadFile";
-import { Link } from "react-router-dom";
 import FileLink from "./components/FileLink/FileLink";
 
 const router = createHashRouter([
 	{
 		path: "/",
 		element: (
-			<h1>
-				<Link to={"app"}>Go to app</Link>
-			</h1>
+			<Navigate
+				to={"app"}
+				replace={true}
+			/>
 		),
 	},
 	{
 		path: "app",
 		element: <Root />,
+		errorElement: <div>Something went wrong</div>,
 		children: [
 			{
 				index: true,
