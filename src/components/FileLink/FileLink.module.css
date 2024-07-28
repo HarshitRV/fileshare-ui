@@ -1,0 +1,20 @@
+.card {
+	max-width: 100%;
+}
+
+.cardContent {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	white-space: pre-wrap;
+}
+
+.cardFooter {
+	flex-direction: column !important;
+	gap: 0.5rem;
+}
+
+.cardFooterItems {
+	display: flex;
+	gap: 0.5rem;
+	width: 100%;
+}

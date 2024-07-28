@@ -1,0 +1,15 @@
+.linkContainer {
+	display: flex;
+    gap: 0.5rem;
+	align-items: center;
+}
+
+.link {
+	color: #4338ca;
+	display: flex;
+	align-items: center;
+}
+
+.copyIcon {
+	height: 35px !important;
+}
