@@ -23,7 +23,7 @@ export const isValidFileType = (type: string): boolean => {
 export const fileshareApi = createApi({
 	reducerPath: "fileshareApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://localhost:3002/api/v2/",
+		baseUrl: import.meta.env.VITE_BASE_URL,
 	}),
 	endpoints: (builder) => ({
 		uploadFile: builder.mutation<FileshareState, FormData>({
