@@ -131,6 +131,7 @@ export default function UploadFile() {
 				<div className="flex items-center gap-2">
 					<Switch
 						id="password-protect"
+						disabled
 						onCheckedChange={handlePasswordProtectCheckChange}
 					/>
 					<Label htmlFor="password-protect">Password protect link</Label>
@@ -141,7 +142,11 @@ export default function UploadFile() {
 					onClick={handleFileUpload}
 					className="w-full flex gap-2"
 					disabled={isLoading || !file}>
-					{isLoading ? <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> : <UploadIcon width={16}/>}
+					{isLoading ? (
+						<ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+					) : (
+						<UploadIcon width={16} />
+					)}
 					Upload
 				</Button>
 			</CardFooter>
