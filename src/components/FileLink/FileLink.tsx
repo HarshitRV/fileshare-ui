@@ -10,14 +10,7 @@ import { useAppSelector } from "@/store/hooks";
 import { useNavigate } from "react-router-dom";
 import URLContainer from "../URLContainer/URLContainer";
 import { Button } from "../ui/button";
-import { UploadIcon, CopyIcon } from "lucide-react";
-import {
-	Tooltip,
-	TooltipProvider,
-	TooltipTrigger,
-	TooltipContent,
-} from "@radix-ui/react-tooltip";
-// import { CopyIcon } from "@radix-ui/react-icons";
+import { UploadIcon } from "lucide-react";
 
 import styles from "./FileLink.module.css";
 
