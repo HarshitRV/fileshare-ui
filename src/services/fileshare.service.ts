@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { FileshareState } from "@/slice/fileshare";
 
+export interface ApiStatusResponse {
+	status: number;
+	message: string;
+}
+
 export const acceptedFileFormats = new Set([
 	"application/pdf",
 	"application/zip",
@@ -26,6 +31,14 @@ export const fileshareApi = createApi({
 		baseUrl: import.meta.env.VITE_BASE_URL,
 	}),
 	endpoints: (builder) => ({
+		getApiStatus: builder.query<ApiStatusResponse, void>({
+			query: () => ({
+				url: "status",
+			}),
+
+			transformResponse: (response: { data: ApiStatusResponse }) =>
+				response.data,
+		}),
 		uploadFile: builder.mutation<FileshareState, FormData>({
 			query: (data) => ({
 				url: "upload",
@@ -36,4 +49,4 @@ export const fileshareApi = createApi({
 	}),
 });
 
-export const { useUploadFileMutation } = fileshareApi;
+export const { useUploadFileMutation, useGetApiStatusQuery } = fileshareApi;

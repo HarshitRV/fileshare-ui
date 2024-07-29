@@ -1,0 +1,16 @@
+.main {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loaderContainer {
+	width: 80dvw;
+}
+
+.error {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}

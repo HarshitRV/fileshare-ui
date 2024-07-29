@@ -31,9 +31,7 @@ export default function URLContainer({ url, type }: URLContainerProps) {
 					<div>
 						<a
 							className={styles.link}
-							href={url}
-							target="_blank"
-							rel="noreferrer noopener">
+							href={url}>
 							{url}
 						</a>
 					</div>

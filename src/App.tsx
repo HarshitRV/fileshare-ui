@@ -1,17 +1,13 @@
 import Root from "./routes/Root/Root";
-import { createHashRouter, Navigate, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import UploadFile from "./components/UploadFile/UploadFile";
 import FileLink from "./components/FileLink/FileLink";
+import InitializeApp from "./components/InitializeApp/InitializeApp";
 
 const router = createHashRouter([
 	{
 		path: "/",
-		element: (
-			<Navigate
-				to={"app"}
-				replace={true}
-			/>
-		),
+		element: <InitializeApp />,
 	},
 	{
 		path: "app",
