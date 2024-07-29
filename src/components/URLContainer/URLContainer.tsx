@@ -1,7 +1,5 @@
-import { CopyIcon } from "@radix-ui/react-icons";
-
-import styles from "./URLContainer.module.css";
-import { Button } from "../ui/button";
+import { useState } from "react";
+import { CopyIcon, CheckIcon, ServerCrash } from "lucide-react";
 import {
 	Tooltip,
 	TooltipContent,
@@ -9,45 +7,70 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import styles from "./URLContainer.module.css";
+
 interface URLContainerProps {
 	url: string;
 	type: "Short" | "Long";
 }
 
 export default function URLContainer({ url, type }: URLContainerProps) {
+	const [toggleIcon, setToggleIcon] = useState<boolean>(false);
 	const handleCopyToClipboard = async () => {
 		await navigator.clipboard.writeText(url);
+		setToggleIcon(true);
+		setTimeout(() => setToggleIcon(false), 3000);
 	};
 
 	return (
 		<div className="space-y-2">
 			<h4>{type} URL</h4>
 			{url ? (
-				<div className={styles.linkContainer}>
-					<a
-						className={`flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${styles.link}`}
-						href={url}
-						target="_blank"
-						rel="noreferrer noopener">
-						{url}
-					</a>
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Button
-									className={styles.copyIcon}
-									onClick={handleCopyToClipboard}>
-									<CopyIcon />
-								</Button>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p>Copy to clipboard</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
+				<div
+					className={`rounded-md border border-input p-2 ${styles.urlContainer}`}>
+					<div>
+						<a
+							className={styles.link}
+							href={url}
+							target="_blank"
+							rel="noreferrer noopener">
+							{url}
+						</a>
+					</div>
+					<div className={`${styles.copyIconContainer}`}>
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									{toggleIcon ? (
+										<CheckIcon
+											width={18}
+											color="#39FF14"
+										/>
+									) : (
+										<CopyIcon
+											className={styles.copyIcon}
+											width={18}
+											onClick={handleCopyToClipboard}
+										/>
+									)}
+								</TooltipTrigger>
+								<TooltipContent>
+									<p>Copy to clipboard</p>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					</div>
 				</div>
 			) : (
-				<p>Link not found</p>
+				<p className="flex gap-2">
+					404 Not Found{" "}
+					<span>
+						<ServerCrash
+							width={16}
+							color="#FF3131"
+						/>
+					</span>
+				</p>
 			)}
 		</div>
 	);
